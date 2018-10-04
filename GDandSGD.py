@@ -70,23 +70,34 @@ def StochasticGradientDescent(xi, yi, learning_rate, epoch, data, sampleNumber):
 
 	return PointList### 表示梯度下降过程中经过的点
 
-
-def main():
-	data = getData(2000);
-	#PointList = GradientDescent(0, 1, 0.01, 1000, data, 2000) ### 梯度下降
-	PointList = StochasticGradientDescent(0, 1, 0.01, 1000, data, 2000) ### 随机梯度下降
-	xs = [a[0] for a in data]
-	ys = [b[1] for b in data]
+### 画图函数
+def draw(xs, ys, pointXS, pointYS):
 
 	plt.scatter(xs, ys, color = 'red')
-
-	pointXS = [x[0] for x in PointList]
-	pointYS = [y[1] for y in PointList]
-
 	plt.plot(pointXS, pointYS, color = 'blue') ### 画图
 
 	plt.show()
 
-	print(PointList[-1]); #### 打印最终收敛的坐标，即为中心点
+
+def main():
+	data = getData(2000);
+
+	PointList = GradientDescent(0, 1, 0.01, 1000, data, 2000) ### 梯度下降
+	PointList2 = StochasticGradientDescent(0, 1, 0.01, 1000, data, 2000) ### 随机梯度下降
+	
+	xs = [a[0] for a in data]
+	ys = [b[1] for b in data]
+
+	pointXS = [x[0] for x in PointList]
+	pointYS = [y[1] for y in PointList]
+
+	pointXS2 = [x[0] for x in PointList2]
+	pointYS2 = [y[1] for y in PointList2]
+
+	draw(xs, ys, pointXS, pointYS)
+	draw(xs, ys, pointXS2, pointYS2)
+
+	print(PointList[-1]); #### 打印最终收敛的坐标，即为中心点 梯度下降
+	print(PointList2[-1]); #### 打印最终收敛的坐标，即为中心点 随机梯度下降
 
 main()
