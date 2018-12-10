@@ -23,7 +23,7 @@ def calThePDFOfGaussin(miu, cov, x, y):
     temp = np.matrix(np.array([x, y]) - miu);
     temp2 = float(temp * (cov.I).T * temp.T);
     temp4 = np.e ** (-temp2 * 0.5);
-    temp5 = temp4 / (math.sqrt(np.linalg.det(cov)));
+    temp5 = temp4 / (math.sqrt(abs(np.linalg.det(cov)) ));
     return temp5;
 
 def main():
